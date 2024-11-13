@@ -15,8 +15,6 @@ jobs:
 
       - name: Deploy to Azure VM
         env:
-          AZURE_VM_IP: ${{ secrets.AZURE_VM_IP }}
-          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
           REMOTE_PROJECT_PATH: ${{ secrets.REMOTE_PROJECT_PATH }}
         run: |
@@ -25,7 +23,7 @@ jobs:
           chmod 600 azure_key.pem
 
           # SSH into the server and pull the latest changes
-          ssh -i azure_key.pem -o StrictHostKeyChecking=no $SSH_USERNAME@$AZURE_VM_IP "
+          ssh -i azure_key.pem -o StrictHostKeyChecking=no azureuser@40.118.234.206 "
             cd /home/azureuser/test && sudo git pull && sudo rm -rf /var/www/html/index.html && sudo cp index.html /var/www/html/index.html
           "
 
