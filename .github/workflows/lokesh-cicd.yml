@@ -1,0 +1,33 @@
+name: Deploy Static Website to Azure VM
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow on push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install SSH Client
+        run: sudo apt-get install -y sshpass
+
+      - name: Deploy to Azure VM
+        env:
+          AZURE_VM_IP: ${{ secrets.AZURE_VM_IP }}
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          REMOTE_PROJECT_PATH: ${{ secrets.REMOTE_PROJECT_PATH }}
+        run: |
+          # Save the SSH private key and set permissions
+          echo "$SSH_KEY" > azure_key.pem
+          chmod 600 azure_key.pem
+
+          # SSH into the server and pull the latest changes
+          ssh -i azure_key.pem -o StrictHostKeyChecking=no $SSH_USERNAME@$AZURE_VM_IP "
+            cd /home/azureuser/test && sudo git pull && sudo rm -rf /var/www/html/index.html && sudo cp index.html /var/www/html/index.html
+          "
+
+          # Clean up SSH key
+          rm -f azure_key.pem
