@@ -1,15 +1,15 @@
 trigger:
-- staging
+- main
 
 resources:
 - repo: self
 
 stages:
-- stage: mujhe_dekhna_hai_ki
-  displayName: pipeline_kaise_kaam_karti_hai
+- stage: Build
+  displayName: 1-2-3-4
   jobs:
   - job: Build
-    displayName: command_chalana_hai
+    displayName: command_chalana_hai_chal_gayi
     pool:
       vmImage: ubuntu-latest
       name: Default
@@ -18,5 +18,5 @@ stages:
       inputs:
         sshEndpoint: 'demo-lokesh-1-ssh'
         runOptions: 'commands'
-        commands: "cd /home/azureuser && ls"
+        commands: "cd /home/azureuser && mkdir lokesh123456789"
         readyTimeout: '20000'
