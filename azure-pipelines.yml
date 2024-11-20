@@ -12,11 +12,11 @@ stages:
     displayName: Build
     pool:
       vmImage: ubuntu-latest
-      name: Default
+      name: Azure Pipelines
     steps:
     - task: SSH@0
       inputs:
-        sshEndpoint: 'demo-server'
+        sshEndpoint: 'demo-lokesh-1-ssh'
         runOptions: 'commands'
         commands: 'sudo sh s.sh’
         readyTimeout: '20000'
