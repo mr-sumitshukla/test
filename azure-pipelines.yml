@@ -18,6 +18,5 @@ stages:
       inputs:
         sshEndpoint: 'demo-lokesh-1-ssh'
         runOptions: 'commands'
-        commands: 'sudo sh s.sh’
+        commands: "sudo sh s.sh"
         readyTimeout: '20000'
-        #readyTimeout: '20000'
