@@ -5,11 +5,11 @@ resources:
 - repo: self
 
 stages:
-- stage: Build
-  displayName: Build image
+- stage: mujhe_dekhna_hai_ki
+  displayName: pipeline_kaise_kaam_karti_hai
   jobs:
   - job: Build
-    displayName: Build
+    displayName: command_chalana_hai
     pool:
       vmImage: ubuntu-latest
       name: Default
