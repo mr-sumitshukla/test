@@ -18,5 +18,5 @@ stages:
       inputs:
         sshEndpoint: 'demo-lokesh-1-ssh'
         runOptions: 'commands'
-        commands: "sudo sh s.sh"
+        commands: "cd /home/azureuser && ls"
         readyTimeout: '20000'
