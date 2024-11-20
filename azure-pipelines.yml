@@ -12,7 +12,6 @@ stages:
     displayName: Build
     pool:
       vmImage: ubuntu-latest
-      name: Azure Pipelines
     steps:
     - task: SSH@0
       inputs:
