@@ -1,0 +1,23 @@
+trigger:
+- staging
+
+resources:
+- repo: self
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+      name: Default
+    steps:
+    - task: SSH@0
+      inputs:
+        sshEndpoint: 'demo-server'
+        runOptions: 'commands'
+        commands: 'sudo sh s.sh’
+        readyTimeout: '20000'
+        #readyTimeout: '20000'
